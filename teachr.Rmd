@@ -1,0 +1,187 @@
+---
+title: "Descriptive Data Analysis"
+Author: "Naike Wang"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dplyr)
+library("readxl")
+covid_data <- read_excel("data/COVID19_data.xlsx")
+mortality_by_race <- covid_data %>%
+    group_by(Ethnic_group) %>%
+    summarise(mean_mortality = mean(Mortality_rate, na.rm = TRUE))
+```
+
+## Introduction
+In this assignment, you will enhance your proficiency with four essential R functions for descriptive data analysis, including `mean()`, `median()`, `min()`, and `max()`. I have prepared several exercises designed to enhance your understanding and application of these functions. For those who relish a challenge, a special coding task awaits to test your abilities further!
+
+## Mean
+The `mean()` function calculates the average of a set of numbers.
+
+Try calculating the mean of the following vector:
+```{r mean, exercise=TRUE}
+vector <- c(4, 10, 15, 6, 20)
+mean(vector)
+```
+
+## Median
+The `median()` function finds the middle value of a numeric dataset.
+
+Try calculating the median of the following vector:
+```{r median, exercise=TRUE}
+vector <- c(4, 10, 15, 6, 20)
+median(vector)
+```
+
+## Minimum
+The min() function identifies the smallest value in a dataset.
+
+Try finding the minimum of the following vector:
+```{r min, exercise=TRUE}
+vector <- c(4, 10, 15, 6, 20)
+min(vector)
+```
+
+## Maximum
+The max() function identifies the largest value in a dataset.
+
+Try finding the maximum of the following vector:
+```{r max, exercise=TRUE}
+vector <- c(4, 10, 15, 6, 20)
+max(vector)
+```
+
+## Quiz: Multiple Choice
+```{r Q1, echo=FALSE}
+question("Which function calculates the average value of a dataset?",
+    answer("sum()"),
+    answer("mean()", correct = TRUE),
+    answer("median()"),
+    answer("total()"),
+    allow_retry = TRUE
+)
+```
+```{r Q2, echo=FALSE}
+question("Which function finds the middle value of a dataset?",
+    answer("average()"),
+    answer("mode()"),
+    answer("median()", correct = TRUE),
+    answer("range()"),
+    allow_retry = TRUE
+)
+```
+```{r Q3, echo=FALSE}
+ question("Which function returns the smallest value?",
+    answer("smallest()"),
+    answer("min()", correct = TRUE),
+    answer("least()"),
+    answer("lower()"),
+    allow_retry = TRUE
+  )
+```
+```{r Q4, echo=FALSE}
+  question("Which function returns the largest value?",
+    answer("max()", correct = TRUE),
+    answer("most()"),
+    answer("maximum()"),
+    answer("upper()"),
+    allow_retry = TRUE
+  )
+```
+
+## Quiz: Coding Task
+### R Coding Task: Basic Statistical Calculations
+
+* Initialize your dataset: Begin by creating a vector with the following values: `3, 5, 12, 20, 10, 16` and store the result in an object named `dat`.
+
+* Calculate the following values:
+  * Mean: Calculate the mean of the dataset and store it in an object named `mean`.
+  * Median: Calculate the median of the dataset and store it in an object named `median`.
+  * Maximum: Identify the maximum value of the dataset and store it in an object named `max`.
+  * Minimum: Identify the minimum value of the dataset and store it in an object named `min`.
+
+* Sum the results: Sum up the values stored in `mean`, `median`, `max`, and `min`. Save this final result in an object named `result`.
+
+* Check your work: Print the `result` object to verify your calculations.
+
+```{r DDA, exercise = TRUE, exercise.eval = FALSE}
+
+```
+
+```{r DDA-solution}
+dat <- c(3, 5, 12, 20, 10, 16)
+mean <- mean(dat)
+median <- median(dat)
+min <- min(dat)
+max <- max(dat)
+result <- mean + median + min + max
+print(result)
+# The final result is 45
+```
+
+
+## Coding Challenge: COVID-19 Data
+We will use what we have learned today to analyze a COVID-19 dataset `COVID_data.csv` (source: https://data.world/makeovermonday/2021w29). This dataset contains mortality rates of different ethnic groups. The dataset has been preloaded into the environment and stored in the object named `covid_data`. 
+
+First, let's check out the dataset `covid_data` and see which ethnic groups are in there.
+```{r loaddataset, exercise = TRUE, exercise.eval = FALSE}
+
+```
+
+```{r loaddataset-solution}
+print(covid_data)
+```
+
+Second, you will calculate the mean mortality rate across both males and females within each ethnic group. To do this, let's use the `dplyr` package to manipulate the data. 
+
+* Use `group_by()` to group the same ethnic group together across gender.
+
+* Use `mean()` inside `summarize()` to calculate the average mortality rate at once. 
+
+* Save the results in an object and name it `mortality_by_race`. 
+
+* Print the results.
+
+```{r meanmortalitybygroup, exercise = TRUE, exercise.eval = FALSE}
+
+```
+
+```{r meanmortalitybygroup-solution}
+mortality_by_race <- covid_data %>%
+    group_by(Ethnic_group) %>%
+    summarise(mean_mortality = mean(Mortality_rate, na.rm = TRUE))
+print(mortality_by_race)
+```
+
+Third, let's answer the following questions:
+
+* What is the average mortality rate of all the ethnic groups?
+
+* What is the median mortality rate of all the ethnic groups?
+
+* Which ethnic group suffer from the highest mortality rate?
+
+* Which ethnic group suffer from the lowest mortality rate?
+
+(Use `round()` to round the mortality rates to two decimal places in the result)
+```{r DescriptiveDA, exercise = TRUE, exercise.eval = FALSE}
+
+```
+
+```{r DescriptiveDA-solution}
+mean <- mean(mortality_by_race$mean_mortality)
+print(round(mean, 2))
+median <- median(mortality_by_race$mean_mortality)
+print(round(median, 2))
+min <- min(mortality_by_race$mean_mortality)
+print(round(min, 2))
+max <- max(mortality_by_race$mean_mortality)
+print(round(max, 2))
+# The average mortality rate is 1.63.
+# The median mortality rate is 1.64
+# Chinese and Mixed have the lowest mortality rate.
+# Black has the highest mortality rate.
+```
