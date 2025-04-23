@@ -5,7 +5,7 @@
 You can explore the interactive app here:  
 **[https://quantpsych.shinyapps.io/coding/](https://quantpsych.shinyapps.io/coding/)**
 
---
+
 
 ## Project Purpose
 
@@ -13,7 +13,7 @@ This project demonstrates how **Shiny**, combined with the **learnr** package, c
 
 The framework is adaptable and can be used to build training modules across various domains, including statistics, data science, and public health.
 
---
+
 
 ## What This App Demonstrates
 
@@ -23,7 +23,7 @@ The framework is adaptable and can be used to build training modules across vari
 - Integration of external datasets to support real-world examples  
 - A modular structure that can be repurposed for diverse educational use cases
 
---
+
 
 ## Example Topic: Exploratory Data Analysis (EDA)
 
@@ -31,7 +31,7 @@ This particular version of the app introduces basic descriptive statistics—mea
 
 Although EDA is used as the instructional focus here, the same interactive format can be applied to many other subjects.
 
---
+
 
 ## R Libraries Used
   
@@ -39,7 +39,7 @@ Although EDA is used as the instructional focus here, the same interactive forma
 - dplyr  
 - readxl
 
---
+
 
 ## Educational Value
 
@@ -50,7 +50,7 @@ This project illustrates how Shiny can be used to:
 - Deliver self-paced, reproducible learning environments  
 - Enhance understanding of data concepts through structured tasks and real examples
 
---
+
 
 ## How to Run
 
@@ -68,7 +68,7 @@ This project illustrates how Shiny can be used to:
 
     Make sure the dataset `COVID19_data.xlsx` is located in a `data/` folder within your working directory.
 
---
+
 
 ## File Structure
 
